@@ -1,0 +1,264 @@
+/* ===== Стили сайта 2048 (простое оформление) ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шапка */
+header {
+    background: #333;
+    color: #fff;
+    padding: 15px;
+}
+
+.header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover { text-decoration: underline; }
+
+nav .role-badge {
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover { background: #0069d9; }
+
+.btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 5px 12px;
+    font-size: 14px;
+}
+
+.btn-danger { background: #dc3545; color: #fff; padding: 5px 12px; font-size: 14px; }
+.btn-small { padding: 5px 12px; font-size: 14px; }
+
+/* Основной блок */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 25px 15px;
+}
+
+h1 { margin-bottom: 20px; }
+
+/* Карточка */
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Главная страница */
+.hero {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.hero h1 { font-size: 48px; }
+
+.hero p {
+    font-size: 17px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Формы входа/регистрации */
+.auth-card { max-width: 400px; margin: 30px auto; }
+
+.auth-card h1 { text-align: center; font-size: 26px; }
+
+.form-group { margin-bottom: 15px; }
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.auth-card .btn { width: 100%; }
+
+.auth-card .switch-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Сообщения */
+.alert {
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+
+/* Таблицы */
+table { width: 100%; border-collapse: collapse; }
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th { background: #f8f9fa; }
+
+/* Статистика в админке */
+.stats-row { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+
+.stat-card {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+}
+
+.stat-card .number { font-size: 28px; font-weight: bold; }
+.stat-card .label { color: #666; font-size: 14px; }
+
+/* Игра 2048 */
+.game-layout {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.game-info { width: 180px; display: flex; flex-direction: column; gap: 10px; }
+
+.score-box { text-align: center; padding: 12px; }
+
+.score-box .number { font-size: 24px; font-weight: bold; }
+.score-box .label { color: #666; font-size: 13px; }
+
+/* Игровое поле — цвета плиток стандартные для 2048 */
+.board {
+    width: 440px;
+    height: 440px;
+    max-width: 95vw;
+    max-height: 95vw;
+    background: #bbada0;
+    border-radius: 8px;
+    padding: 10px;
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+    gap: 10px;
+    position: relative;
+    touch-action: none;
+}
+
+.cell { background: rgba(238, 228, 218, .35); border-radius: 4px; position: relative; }
+
+.tile {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 32px;
+    background: #eee4da;
+    color: #776e65;
+    z-index: 10;
+}
+
+.tile[data-value="2"]    { background: #eee4da; color: #776e65; }
+.tile[data-value="4"]    { background: #ede0c8; color: #776e65; }
+.tile[data-value="8"]    { background: #f2b179; color: #fff; }
+.tile[data-value="16"]   { background: #f59563; color: #fff; }
+.tile[data-value="32"]   { background: #f67c5f; color: #fff; }
+.tile[data-value="64"]   { background: #f65e3b; color: #fff; }
+.tile[data-value="128"]  { background: #edcf72; color: #fff; font-size: 26px; }
+.tile[data-value="256"]  { background: #edcc61; color: #fff; font-size: 26px; }
+.tile[data-value="512"]  { background: #edc850; color: #fff; font-size: 26px; }
+.tile[data-value="1024"] { background: #edc53f; color: #fff; font-size: 20px; }
+.tile[data-value="2048"] { background: #edc22e; color: #fff; font-size: 20px; }
+
+.game-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .7);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    z-index: 100;
+    color: #fff;
+    text-align: center;
+}
+
+.game-overlay.hidden { display: none; }
+
+.game-help { color: #666; font-size: 14px; margin-top: 15px; text-align: center; }
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #999;
+    font-size: 13px;
+    background: #eee;
+}
